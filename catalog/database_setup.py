@@ -15,7 +15,7 @@ class User(Base):
     picture = Column(String(250))
 
 
-class Categories(Base):
+class Category(Base):
     __tablename__ = 'category'
 
     id = Column(Integer, primary_key=True)
@@ -39,7 +39,7 @@ class CategoryItem(Base):
     id = Column(Integer, primary_key=True)
     description = Column(String(250))
     category_id = Column(Integer, ForeignKey('category.id'))
-    category = relationship(Categories)
+    category = relationship(Category)
     user_id = Column(Integer, ForeignKey('user.id'))
     user = relationship(User)
 
