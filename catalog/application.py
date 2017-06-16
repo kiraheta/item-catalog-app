@@ -111,10 +111,22 @@ def newCategoryItem(category_id):
         return render_template('newCategoryItem.html', category_id=category_id)
 
 
-@app.route('/category/<int:category_id>/<int:categoryItem_id>/edit', methods=['GET', 'POST'])
+@app.route('/category/<int:category_id>/categoryItem/<int:categoryItem_id>/edit', methods=['GET', 'POST'])
 def editCategoryItem(category_id, categoryItem_id):
     """Edit a category item"""
-    return "Edit a category item"
+    editedItem = session.query(CategoryItem).filter_by(id=categoryItem_id).one()
+    if request.method == 'POST':
+        if request.form['name']:
+            editedItem.name = request.form['name']
+        if request.form['description']:
+            editedItem.description = request.form['description']
+        session.add(editedItem)
+        session.commit()
+        return redirect(url_for('showCategoryItem', category_id=category_id))
+    else:
+
+        return render_template(
+            'editCategoryItem.html', category_id=category_id, categoryItem_id=categoryItem_id, item=editedItem)
 
 
 @app.route('/category/<int:category_id>/<int:categoryItem_id>/delete', methods=['GET', 'POST'])
