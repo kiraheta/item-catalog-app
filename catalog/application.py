@@ -72,7 +72,6 @@ def editCategory(category_id):
             'editCategory.html', category=editedCategory)
 
 
-# Delete a category
 @app.route('/category/<int:category_id>/delete/', methods=['GET', 'POST'])
 def deleteCategory(category_id):
     """Delete a category"""
@@ -88,10 +87,14 @@ def deleteCategory(category_id):
             'deleteCategory.html', category=categoryToDelete)
 
 
-@app.route('/category/<int:category_id>/<int:categoryItem_id>')
-def showCategoryItem(category_id,categoryItem_id):
+@app.route('/category/<int:category_id>')
+@app.route('/category/<int:category_id>/categoryItem/')
+def showCategoryItem(category_id):
     """Show a category item"""
-    return "Show a category item"
+    category = session.query(Category).filter_by(id=category_id).one()
+    items = session.query(CategoryItem).filter_by(
+        category_id=category_id).all()
+    return render_template('categoryItems.html', items=items, category=category)
 
 
 @app.route('/category/<int:category_id>/new/', methods=['GET', 'POST'])
