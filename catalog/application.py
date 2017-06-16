@@ -37,6 +37,11 @@ Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
+@app.route('/category/JSON')
+def categoriesJSON():
+    categories = session.query(Category).all()
+    return jsonify(categories=[i.serialize for i in categories])
+
 
 @app.route('/category/<int:category_id>/categoryItem/JSON')
 def categoryItemJSON(category_id):
@@ -44,6 +49,12 @@ def categoryItemJSON(category_id):
     items = session.query(CategoryItem).filter_by(
         category_id=category_id).all()
     return jsonify(CategoryItems=[i.serialize for i in items])
+
+
+@app.route('/category/<int:category_id>/categoryItem/<int:categoryItem_id>/JSON')
+def menuItemJSON(category_id, categoryItem_id):
+    Category_Item = session.query(CategoryItem).filter_by(id=categoryItem_id).one()
+    return jsonify(Category_Item=Category_Item.serialize)
 
 
 @app.route('/')
