@@ -97,10 +97,18 @@ def showCategoryItem(category_id):
     return render_template('categoryItems.html', items=items, category=category)
 
 
-@app.route('/category/<int:category_id>/new/', methods=['GET', 'POST'])
+@app.route('/category/<int:category_id>/categoryItem/new/', methods=['GET', 'POST'])
 def newCategoryItem(category_id):
     """Create a category item"""
-    return "Create a category item"
+    if request.method == 'POST':
+        newItem = CategoryItem(name=request.form['name'], description=request.form[
+                           'description'], category_id=category_id)
+        session.add(newItem)
+        session.commit()
+
+        return redirect(url_for('showCategoryItem', category_id=category_id))
+    else:
+        return render_template('newCategoryItem.html', category_id=category_id)
 
 
 @app.route('/category/<int:category_id>/<int:categoryItem_id>/edit', methods=['GET', 'POST'])
