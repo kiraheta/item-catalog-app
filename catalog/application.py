@@ -61,7 +61,15 @@ def newCategory():
 @app.route('/category/<int:category_id>/edit/', methods=['GET', 'POST'])
 def editCategory(category_id):
     """Edit new category"""
-    return "Edit category"
+    editedCategory = session.query(
+        Category).filter_by(id=category_id).one()
+    if request.method == 'POST':
+        if request.form['name']:
+            editedCategory.name = request.form['name']
+            return redirect(url_for('showCategories'))
+    else:
+        return render_template(
+            'editCategory.html', category=editedCategory)
 
 
 # Delete a category
