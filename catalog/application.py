@@ -43,7 +43,12 @@ session = DBSession()
 def showCategories():
     """Show all categories"""
     categories = session.query(Category).order_by(asc(Category.name))
-    return "Hello World!"
+    output = ''
+    for i in categories:
+            output += i.name
+            output += '</br>'
+            output += '</br>'
+    return output
 
 
 @app.route('/category/new/', methods=['GET', 'POST'])
