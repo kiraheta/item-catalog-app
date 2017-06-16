@@ -38,6 +38,14 @@ DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
 
+@app.route('/category/<int:category_id>/categoryItem/JSON')
+def categoryItemJSON(category_id):
+    category = session.query(Category).filter_by(id=category_id).one()
+    items = session.query(CategoryItem).filter_by(
+        category_id=category_id).all()
+    return jsonify(CategoryItems=[i.serialize for i in items])
+
+
 @app.route('/')
 @app.route('/category/')
 def showCategories():
