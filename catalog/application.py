@@ -129,10 +129,16 @@ def editCategoryItem(category_id, categoryItem_id):
             'editCategoryItem.html', category_id=category_id, categoryItem_id=categoryItem_id, item=editedItem)
 
 
-@app.route('/category/<int:category_id>/<int:categoryItem_id>/delete', methods=['GET', 'POST'])
+@app.route('/category/<int:category_id>/categoryItem/<int:categoryItem_id>/delete', methods=['GET', 'POST'])
 def deleteCategoryItem(category_id, categoryItem_id):
     """Delete a category item"""
-    return "Delete a category item"
+    itemToDelete = session.query(CategoryItem).filter_by(id=categoryItem_id).one()
+    if request.method == 'POST':
+        session.delete(itemToDelete)
+        session.commit()
+        return redirect(url_for('showCategoryItem', category_id=category_id))
+    else:
+        return render_template('deleteCategoryItem.html', item=itemToDelete)
 
 
 if __name__ == '__main__':
