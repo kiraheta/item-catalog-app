@@ -76,7 +76,16 @@ def editCategory(category_id):
 @app.route('/category/<int:category_id>/delete/', methods=['GET', 'POST'])
 def deleteCategory(category_id):
     """Delete a category"""
-    return "Delete a category"
+    categoryToDelete = session.query(
+        Category).filter_by(id=category_id).one()
+    if request.method == 'POST':
+        session.delete(categoryToDelete)
+        session.commit()
+        return redirect(
+            url_for('showCategories', category_id=category_id))
+    else:
+        return render_template(
+            'deleteCategory.html', category=categoryToDelete)
 
 
 @app.route('/category/<int:category_id>/<int:categoryItem_id>')
