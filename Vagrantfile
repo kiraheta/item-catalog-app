@@ -13,6 +13,7 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.provision "shell", inline: <<-SHELL
+  	echo "set grub-pc/install_devices /dev/sda" | debconf-communicate
     apt-get -qqy update
     apt-get -qqy upgrade
     apt-get -qqy install make zip unzip postgresql
