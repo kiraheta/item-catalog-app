@@ -43,18 +43,25 @@ session = DBSession()
 def showCategories():
     """Show all categories"""
     categories = session.query(Category).order_by(asc(Category.name))
-    output = ''
-    for i in categories:
-            output += i.name
-            output += '</br>'
-            output += '</br>'
-    return output
+    return render_template('categories.html', categories=categories)
+    # output = ''
+    # for i in categories:
+    #         output += i.name
+    #         output += '</br>'
+    #         output += '</br>'
+    # return output
 
 
-@app.route('/category/new/', methods=['GET', 'POST'])
-def newCategory():
-    """Create new category"""
-    return "Create new category"
+# @app.route('/category/new/', methods=['GET', 'POST'])
+# def newCategory():
+#     """Create new category"""
+#     if request.method == 'POST':
+#         newCategory = Category(name=request.form['name'])
+#         session.add(newCategory)
+#         session.commit()
+#         return redirect(url_for('showCategories'))
+#     else:
+#         return render_template('newCategory.html')
 
 
 @app.route('/category/<int:category_id>/edit/', methods=['GET', 'POST'])
