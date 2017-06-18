@@ -23,7 +23,7 @@ This project satisfies a project requirement for Udacity's [Full Stack Web Devel
 
 1. Download or Clone the repository
 
- ```git clone https://github.com/kiraheta/item-catalog-app.git```
+   ```git clone https://github.com/kiraheta/item-catalog-app.git```
 
 2. ```cd``` into directory **item-catalog-app/catalog**.
 
@@ -31,7 +31,7 @@ This project satisfies a project requirement for Udacity's [Full Stack Web Devel
 1. Inside the subdirectory, run the command
 ```vagrant up```. Doing so will download & install the Linux OS.
 
-2. Once ```vagrant up``` is completed and your shell prompt returns, run ```vagrant ssh``` to log into newly installed Linux OS.
+2. Once ```vagrant up``` is completed and your shell prompt returns, run ```vagrant ssh``` to log into the newly installed Linux OS.
 
 3. Lastly, run ```cd /vagrant```
 
@@ -44,4 +44,6 @@ This project satisfies a project requirement for Udacity's [Full Stack Web Devel
 
 1. Run ```python application.py``` to run the Flask web server.
 
-2. Visit ```http://localhost:8000 ``` to view the item catalog app. You should be able to view, add, edit, and delete catalog items and categories.
+2. Visit ```http://localhost:8000 ``` to view the item catalog app.
+
+3. Login via Google signin to add, edit, and delete catalog items and categories.
