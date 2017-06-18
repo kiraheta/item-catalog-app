@@ -359,6 +359,19 @@ def deleteCategoryItem(category_id, categoryItem_id):
         return render_template('deleteCategoryItem.html', item=itemToDelete)
 
 
+# Disconnect based on provider
+@app.route('/disconnect')
+def disconnect():
+    if 'provider' in login_session:
+        if login_session['provider'] == 'google':
+            gdisconnect()
+        flash("You have successfully been logged out.")
+        return redirect(url_for('showCategories'))
+    else:
+        flash("You were not logged in")
+        return redirect(url_for('showCategories'))
+
+
 if __name__ == '__main__':
     app.secret_key = 'super_secret_key'
     app.debug = True
