@@ -25,12 +25,12 @@ session.add(User1)
 session.commit()
 
 # CategoryItem for Soccer
-category1 = Category(name="Soccer")
+category1 = Category(user_id=1, name="Soccer")
 session.add(category1)
 session.commit()
 
 
-categoryItem1 = CategoryItem(name="Soccer Cleats",
+categoryItem1 = CategoryItem(user_id=1, name="Soccer Cleats",
                             description="Float right past the competition, running so incredibly light and cushioned that you'll be hauntingly hard to catch!",
                             category=category1)
 
@@ -38,7 +38,7 @@ session.add(categoryItem1)
 session.commit()
 
 
-categoryItem2 = CategoryItem(name="Soccer Jersey",
+categoryItem2 = CategoryItem(user_id=1, name="Soccer Jersey",
                             description="Fit for the field in energetic colors, this men's soccer jersey features sweat-wicking climalite fabric to keep you dry and comfortable.",
                             category=category1)
 
@@ -47,12 +47,12 @@ session.commit()
 
 
 # CategoryItem for Hockey
-category2 = Category(name="Hockey")
+category2 = Category(user_id=1, name="Hockey")
 session.add(category2)
 session.commit()
 
 
-categoryItem1 = CategoryItem(name="Stick",
+categoryItem1 = CategoryItem(user_id=1, name="Stick",
                             description="High impact glass filled nylon blade.",
                             category=category2)
 
@@ -60,7 +60,7 @@ session.add(categoryItem1)
 session.commit()
 
 
-categoryItem2 = CategoryItem(name="Hockey Jersey",
+categoryItem2 = CategoryItem(user_id=1, name="Hockey Jersey",
                             description="Blue custom 'Slap Shot' hockey jersey.",
                             category=category2)
 
@@ -69,12 +69,12 @@ session.commit()
 
 
 # CategoryItem for Basketball
-category3 = Category(name="Basketball")
+category3 = Category(user_id=1, name="Basketball")
 session.add(category3)
 session.commit()
 
 
-categoryItem1 = CategoryItem(name="Ball",
+categoryItem1 = CategoryItem(user_id=1, name="Ball",
                             description="Premium Outdoor Cover with Durable Soft Grip Technology .",
                             category=category3)
 
@@ -82,7 +82,7 @@ session.add(categoryItem1)
 session.commit()
 
 
-categoryItem2 = CategoryItem(name="NBA Jersey",
+categoryItem2 = CategoryItem(user_id=1, name="NBA Jersey",
                             description="Get Your Future Nba Star Outfitted In The Same Jersey As Their Nba Superstar With The Official Nba Replica Jersey By Adidas.",
                             category=category3)
 
