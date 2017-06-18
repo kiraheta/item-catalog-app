@@ -8,7 +8,6 @@
 		<div class="col-md-11 col-md-offset-1 padding-none">
 			<h1>{{ category.name }}
 			<figure class="creator">
-				<!-- <img src="{{ url_for('static', filename='blank_user.gif') }}"> -->
 				<img src="{{ creator.picture }}">
 				<figcaption>{{ creator.name }}</figcaption>
 			</figure>
@@ -40,7 +39,7 @@
 			</a>
 			<a href="{{url_for('newCategoryItem', category_id = category.id )}}">
 				<button class="btn btn-default" id="new-categoryItem-item">
-					<span class="glyphicon glyphicon-glass" aria-hidden="true"></span>Add Category Item
+					<span class="glyphicon glyphicon-check" aria-hidden="true"></span>Add Category Item
 				</button>
 			</a>
 						<a href="{{url_for('deleteCategory', category_id = category.id )}}">
