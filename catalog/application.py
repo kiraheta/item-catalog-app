@@ -414,7 +414,7 @@ def deleteCategoryItem(category_id, categoryItem_id):
         if request.method == 'POST':
             session.delete(itemToDelete)
             session.commit()
-            flash('Menu Item Successfully Deleted')
+            flash('Category Item Successfully Deleted')
             return redirect(url_for('showCategoryItem',
                                     category_id=category_id))
         else:
